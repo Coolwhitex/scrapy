@@ -13,9 +13,8 @@
 # spider yield 相当于生产消费模型中的生产者，pipline 相当于消费者。
 
 
-
 class MoviesPipeline(object):
     def process_item(self, item, spider):
         with open('movie.txt', 'a', encoding='utf-8') as f:
-            f.write(str(item.name) + '\n')
+            f.write(str(item['name']) + '\n')
         return item

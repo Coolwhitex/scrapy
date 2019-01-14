@@ -13,9 +13,9 @@ class MeijuSpider(scrapy.Spider):
         # 非框架写法 dom = lxml.etree.HTML(response.text);dom.xpath('')
         resp = response.xpath('//ul[@class="top-list  fn-clear"]/li')
         for li in resp:
-            titles = li.xpath('//h5/a/text()').extract   # 表示在子标签的基础上继续解析
+            titles = li.xpath('./h5/a/text()').extract()   # 表示在子标签的基础上继续解析
             item = MoviesItem()
-            item.name = titles      # item['name'] = name
+            item['name'] = titles[0]      # item['name'] = name
             yield item          # yield 相当于同步脚本方法中的return
 
             
